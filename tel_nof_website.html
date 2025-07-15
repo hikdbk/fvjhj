@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEL NOF - חנות סלולר ואלקטרוניקה בהר נוף</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ffc107, #ffeb3b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(255,193,7,0.3);
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ffc107 0%, #ffeb3b 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+            color: #333;
+            margin-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            padding: 40px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tab-button {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border-color: #28a745;
+        }
+
+        .tab-button:hover {
+            border-color: #ffc107;
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #ffc107;
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-specs {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 15px;
+        }
+
+        .whatsapp-button {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        /* WhatsApp Popup */
+        .whatsapp-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: none;
+            animation: slideIn 0.5s ease;
+            max-width: 300px;
+        }
+
+        .whatsapp-popup.show {
+            display: block;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .popup-content {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .popup-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .popup-content p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-main-button {
+            background: white;
+            color: #25D366;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .whatsapp-main-button:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #28a745;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            background: linear-gradient(45deg, #ffc107, #ffeb3b);
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(255,193,7,0.3);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-right: 4px solid #ffc107;
+        }
+
+        .review-stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .review-author {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs-container {
+                gap: 5px;
+            }
+
+            .tab-button {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-popup {
+                right: 10px;
+                bottom: 10px;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">TN</div>
+                    <div class="logo-text">TEL NOF</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">בית</a></li>
+                        <li><a href="#products">מוצרים</a></li>
+                        <li><a href="#about">אודות</a></li>
+                        <li><a href="#reviews">ביקורות</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>TEL NOF - חנות הסלולר והאלקטרוניקה שלכם</h1>
+            <p>מגוון רחב של סמארטפונים, אביזרים ומוצרי אלקטרוניקה איכותיים בהר נוף, ירושלים</p>
+            <button class="cta-button" onclick="openWhatsApp()">צור קשר עכשיו</button>
+        </div>
+    </section>
+
+    <section id="products" class="category-tabs">
+        <div class="container">
+            <h2 class="section-title">המוצרים שלנו</h2>
+            <div class="tabs-container">
+                <button class="tab-button active" onclick="showTab('smartphones')">📱 סמארטפונים</button>
+                <button class="tab-button" onclick="showTab('accessories')">🎧 אביזרים</button>
+                <button class="tab-button" onclick="showTab('tablets')">📱 טאבלטים</button>
+                <button class="tab-button" onclick="showTab('smartwatches')">⌚ שעונים חכמים</button>
+                <button class="tab-button" onclick="showTab('gaming')">🎮 גיימינג</button>
+                <button class="tab-button" onclick="showTab('laptops')">💻 מחשבים ניידים</button>
+                <button class="tab-button" onclick="showTab('smart-home')">🏠 בית חכם</button>
+            </div>
+
+            <!-- Smartphones Tab -->
+            <div id="smartphones" class="tab-content active">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-max-naturaltitanium-pdp-image-position-1a_AV1.jpg" alt="iPhone 15 Pro Max">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPhone 15 Pro Max</h4>
+                            <div class="product-specs">
+                                מסך: 6.7" Super Retina XDR<br>
+                                שבב: A17 Pro<br>
+                                מצלמה: 48MP Pro + 12MP Ultra Wide<br>
+                                זיכרון: 256GB/512GB/1TB
+                            </div>
+                            <div class="product-price">₪5,999</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('iPhone 15 Pro Max')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.samsung.com/is/image/samsung/p6pim/il/2302/gallery/il-galaxy-s23-ultra-s918-sm-s918bzgailo-534857424.jpg" alt="Samsung Galaxy S23 Ultra">
+                        </div>
+                        <div class="product-info">
+                            <h4>Samsung Galaxy S23 Ultra</h4>
+                            <div class="product-specs">
+                                מסך: 6.8" Dynamic AMOLED 2X<br>
+                                שבב: Snapdragon 8 Gen 2<br>
+                                מצלמה: 200MP + 12MP + 10MP + 10MP<br>
+                                זיכרון: 256GB/512GB/1TB + S Pen
+                            </div>
+                            <div class="product-price">₪4,799</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Samsung Galaxy S23 Ultra')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1679905853.59518697.jpg" alt="Xiaomi 13 Pro">
+                        </div>
+                        <div class="product-info">
+                            <h4>Xiaomi 13 Pro</h4>
+                            <div class="product-specs">
+                                מסך: 6.73" LTPO OLED<br>
+                                שבב: Snapdragon 8 Gen 2<br>
+                                מצלמה: 50MP + 50MP + 50MP Leica<br>
+                                זיכרון: 256GB/512GB
+                            </div>
+                            <div class="product-price">₪3,299</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Xiaomi 13 Pro')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://lh3.googleusercontent.com/yY9yKEyJD-HmFP8QC1hQk0vPZuUjTbcVxNnkOjwUGJEuIWmJ3gRdUlKiON8L5HMlRlRbKNPJNZvWYhXjz5YjhJzIRqF3Cg=s1600" alt="Google Pixel 7 Pro">
+                        </div>
+                        <div class="product-info">
+                            <h4>Google Pixel 7 Pro</h4>
+                            <div class="product-specs">
+                                מסך: 6.7" LTPO OLED<br>
+                                שבב: Google Tensor G2<br>
+                                מצלמה: 50MP + 48MP + 12MP<br>
+                                זיכרון: 128GB/256GB/512GB
+                            </div>
+                            <div class="product-price">₪2,899</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Google Pixel 7 Pro')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessories Tab -->
+            <div id="accessories" class="tab-content">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQD83_AV1.jpg" alt="AirPods Pro 2">
+                        </div>
+                        <div class="product-info">
+                            <h4>AirPods Pro (דור 2)</h4>
+                            <div class="product-specs">
+                                ביטול רעשים אקטיבי<br>
+                                שבב H2<br>
+                                עמידות למים IPX4<br>
+                                עד 6 שעות האזנה
+                            </div>
+                            <div class="product-price">₪999</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('AirPods Pro 2')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.samsung.com/is/image/samsung/p6pim/levant/sm-r510nzwamea/gallery/levant-galaxy-buds2-pro-r510-sm-r510nzwamea-534284396.jpg" alt="Galaxy Buds2 Pro">
+                        </div>
+                        <div class="product-info">
+                            <h4>Samsung Galaxy Buds2 Pro</h4>
+                            <div class="product-specs">
+                                ביטול רעשים חכם<br>
+                                צליל Hi-Fi 24bit<br>
+                                עמידות למים IPX7<br>
+                                עד 8 שעות האזנה
+                            </div>
+                            <div class="product-price">₪699</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Galaxy Buds2 Pro')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SL1500_.jpg" alt="JBL Charge 5">
+                        </div>
+                        <div class="product-info">
+                            <h4>JBL Charge 5</h4>
+                            <div class="product-specs">
+                                עמידות למים IP67<br>
+                                סוללה עד 20 שעות<br>
+                                Power Bank מובנה<br>
+                                צליל JBL Pro Sound
+                            </div>
+                            <div class="product-price">₪599</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('JBL Charge 5')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://m.media-amazon.com/images/I/61mJuya0P8L._AC_SL1500_.jpg" alt="Anker PowerCore 20000">
+                        </div>
+                        <div class="product-info">
+                            <h4>Anker PowerCore 20000mAh</h4>
+                            <div class="product-specs">
+                                קיבולת: 20,000mAh<br>
+                                יציאות: 2x USB-A + 1x USB-C<br>
+                                טעינה מהירה PowerIQ<br>
+                                7 טעינות לסמארטפון
+                            </div>
+                            <div class="product-price">₪199</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Anker PowerCore 20000')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablets Tab -->
+            <div id="tablets" class="tab-content">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-pro-12-9-6th-gen-wifi-select-spacegray-202210.jpeg" alt="iPad Pro 12.9">
+                        </div>
+                        <div class="product-info">
+                            <h4>iPad Pro 12.9" (M2)</h4>
+                            <div class="product-specs">
+                                מסך: 12.9" Liquid Retina XDR<br>
+                                שבב: Apple M2<br>
+                                מצלמה: 12MP + 10MP Ultra Wide<br>
+                                זיכרון: 128GB/256GB/512GB/1TB/2TB
+                            </div>
+                            <div class="product-price">₪4,999</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('iPad Pro 12.9')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.samsung.com/is/image/samsung/p6pim/levant/sm-x906bzbgmea/gallery/levant-galaxy-tab-s8-ultra-x906-sm-x906bzbgmea-530967396.jpg" alt="Galaxy Tab S8 Ultra">
+                        </div>
+                        <div class="product-info">
+                            <h4>Samsung Galaxy Tab S8 Ultra</h4>
+                            <div class="product-specs">
+                                מסך: 14.6" Super AMOLED<br>
+                                שבב: Snapdragon 8 Gen 1<br>
+                                מצלמה: 13MP + 6MP + 12MP<br>
+                                זיכרון: 128GB/256GB/512GB + S Pen
+                            </div>
+                            <div class="product-price">₪3,999</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Galaxy Tab S8 Ultra')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Watches Tab -->
+            <div id="smartwatches" class="tab-content">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MNP73_VW_34FR+watch-45-alum-midnight-nc-8s_VW_34FR_WF_CO.jpg" alt="Apple Watch Series 8">
+                        </div>
+                        <div class="product-info">
+                            <h4>Apple Watch Series 8</h4>
+                            <div class="product-specs">
+                                מסך: Always-On Retina<br>
+                                מדידת חמצן בדם<br>
+                                GPS + Cellular<br>
+                                עמידות למים 50 מטר
+                            </div>
+                            <div class="product-price">₪1,799</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Apple Watch Series 8')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.samsung.com/is/image/samsung/p6pim/levant/sm-r910nzkamea/gallery/levant-galaxy-watch5-r910-sm-r910nzkamea-534218945.jpg" alt="Galaxy Watch 5">
+                        </div>
+                        <div class="product-info">
+                            <h4>Samsung Galaxy Watch 5</h4>
+                            <div class="product-specs">
+                                מסך: 1.4" Super AMOLED<br>
+                                ניטור בריאות מתקדם<br>
+                                GPS + Bluetooth<br>
+                                עמידות למים 50 מטר
+                            </div>
+                            <div class="product-price">₪1,299</div>
+                            <button class="whatsapp-button" onclick="openWhatsAppProduct('Galaxy Watch 5')">💬 שאל על המוצר</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gaming Tab -->
+            <div id="gaming" class="tab-content">
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21.jpg" alt="PlayStation 5">
+                        </div>
+                        <div class="product-info">
+                            <h4>PlayStation 5</h4>
+                            <div class="product-specs">
+                                מעבד: AMD Zen 2<br>
+                                גרפיקה: AMD RD
